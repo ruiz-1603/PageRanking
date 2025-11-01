@@ -1,0 +1,22 @@
+C:\Users\StevenBrenesChavarrí\Desktop\PROYECTO\WebCrawler\WebCrawler\obj\Debug\WebCrawler.csproj.AssemblyReference.cache
+C:\Users\StevenBrenesChavarrí\Desktop\PROYECTO\WebCrawler\WebCrawler\obj\Debug\WebCrawler.csproj.CoreCompileInputs.cache
+C:\Users\StevenBrenesChavarrí\Desktop\PROYECTO\WebCrawler\WebCrawler\bin\Debug\WebCrawler.exe.config
+C:\Users\StevenBrenesChavarrí\Desktop\PROYECTO\WebCrawler\WebCrawler\bin\Debug\WebCrawler.exe
+C:\Users\StevenBrenesChavarrí\Desktop\PROYECTO\WebCrawler\WebCrawler\bin\Debug\WebCrawler.pdb
+C:\Users\StevenBrenesChavarrí\Desktop\PROYECTO\WebCrawler\WebCrawler\bin\Debug\HtmlAgilityPack.dll
+C:\Users\StevenBrenesChavarrí\Desktop\PROYECTO\WebCrawler\WebCrawler\bin\Debug\HtmlAgilityPack.pdb
+C:\Users\StevenBrenesChavarrí\Desktop\PROYECTO\WebCrawler\WebCrawler\bin\Debug\HtmlAgilityPack.xml
+C:\Users\StevenBrenesChavarrí\Desktop\PROYECTO\WebCrawler\WebCrawler\obj\Debug\WebCrawler.csproj.Up2Date
+C:\Users\StevenBrenesChavarrí\Desktop\PROYECTO\WebCrawler\WebCrawler\obj\Debug\WebCrawler.exe
+C:\Users\StevenBrenesChavarrí\Desktop\PROYECTO\WebCrawler\WebCrawler\obj\Debug\WebCrawler.pdb
+C:\Users\RuizM\Desktop\Ingenieria en Sistemas\II Semestre 2025\Estructuras de datos\Tareas\WebCrawler\bin\Debug\WebCrawler.exe.config
+C:\Users\RuizM\Desktop\Ingenieria en Sistemas\II Semestre 2025\Estructuras de datos\Tareas\WebCrawler\bin\Debug\WebCrawler.exe
+C:\Users\RuizM\Desktop\Ingenieria en Sistemas\II Semestre 2025\Estructuras de datos\Tareas\WebCrawler\bin\Debug\WebCrawler.pdb
+C:\Users\RuizM\Desktop\Ingenieria en Sistemas\II Semestre 2025\Estructuras de datos\Tareas\WebCrawler\bin\Debug\HtmlAgilityPack.pdb
+C:\Users\RuizM\Desktop\Ingenieria en Sistemas\II Semestre 2025\Estructuras de datos\Tareas\WebCrawler\bin\Debug\HtmlAgilityPack.xml
+C:\Users\RuizM\Desktop\Ingenieria en Sistemas\II Semestre 2025\Estructuras de datos\Tareas\WebCrawler\obj\Debug\WebCrawler.csproj.AssemblyReference.cache
+C:\Users\RuizM\Desktop\Ingenieria en Sistemas\II Semestre 2025\Estructuras de datos\Tareas\WebCrawler\obj\Debug\WebCrawler.exe.config
+C:\Users\RuizM\Desktop\Ingenieria en Sistemas\II Semestre 2025\Estructuras de datos\Tareas\WebCrawler\obj\Debug\WebCrawler.csproj.CoreCompileInputs.cache
+C:\Users\RuizM\Desktop\Ingenieria en Sistemas\II Semestre 2025\Estructuras de datos\Tareas\WebCrawler\obj\Debug\WebCrawler.csproj.Up2Date
+C:\Users\RuizM\Desktop\Ingenieria en Sistemas\II Semestre 2025\Estructuras de datos\Tareas\WebCrawler\obj\Debug\WebCrawler.exe
+C:\Users\RuizM\Desktop\Ingenieria en Sistemas\II Semestre 2025\Estructuras de datos\Tareas\WebCrawler\obj\Debug\WebCrawler.pdb

@@ -1,0 +1,115 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace WebCrawler
+{
+    public class PageRankCalculator
+    {
+        private Grafo grafo;
+        private double factorAmortiguacion;
+        private double umbralConvergencia;
+        private int maxIteraciones;
+        
+        public PageRankCalculator(Grafo grafo, double d = 0.85, double umbral = 0.0001, int maxIter = 100)
+        {
+            this.grafo = grafo;
+            this.factorAmortiguacion = d;
+            this.umbralConvergencia = umbral;
+            this.maxIteraciones = maxIter;
+        }
+        
+        // Calcular PageRank de todas las páginas
+        public Dictionary<string, double> Calcular()
+        {
+            List<string> urls = grafo.getNodos();
+            int n = urls.Count;
+            
+            if (n == 0)
+            {
+                Console.WriteLine("No hay páginas para calcular PageRank");
+                return new Dictionary<string, double>();
+            }
+            
+            Console.WriteLine($"\nCalculando PageRank para {n} páginas...");
+            
+            // Inicializar PageRank: todos con valor 1/N
+            Dictionary<string, double> pagerank = new Dictionary<string, double>();
+            foreach (string url in urls)
+            {
+                pagerank[url] = 1.0 / n;
+            }
+            
+            // Iterar hasta convergencia
+            int iteracion = 0;
+            bool convergio = false;
+            
+            while (iteracion < maxIteraciones && !convergio)
+            {
+                Dictionary<string, double> nuevoPagerank = CalcularIteracion(pagerank, urls, n);
+                
+                // Verificar convergencia
+                double diferencia = CalcularDiferencia(pagerank, nuevoPagerank, n);
+                
+                Console.WriteLine($"Iteración {iteracion + 1}: diferencia promedio = {diferencia:F6}");
+                
+                if (diferencia < umbralConvergencia)
+                {
+                    convergio = true;
+                    Console.WriteLine($"Convergencia alcanzada en {iteracion + 1} iteraciones");
+                }
+                
+                pagerank = nuevoPagerank;
+                iteracion++;
+            }
+            
+            if (!convergio)
+            {
+                Console.WriteLine($"Se alcanzó el límite de {maxIteraciones} iteraciones sin convergencia completa");
+            }
+            
+            return pagerank;
+        }
+        
+        // Calcular una iteración del algoritmo
+        private Dictionary<string, double> CalcularIteracion(Dictionary<string, double> pagerankActual, List<string> urls, int n)
+        {
+            Dictionary<string, double> nuevoPagerank = new Dictionary<string, double>();
+            
+            foreach (string url in urls)
+            {
+                double suma = 0.0;
+                
+                // Obtener todas las páginas que enlazan a esta
+                List<string> entrantes = grafo.getEnlacesEntrantes(url);
+                
+                foreach (string urlEntrante in entrantes)
+                {
+                    int cantidadEnlaces = grafo.getEnlacesSalientes(urlEntrante).Count;
+                    if (cantidadEnlaces > 0)
+                    {
+                        suma += pagerankActual[urlEntrante] / cantidadEnlaces;
+                    }
+                }
+                
+                // Aplicar fórmula de PageRank: PR(A) = (1-d)/N + d * suma
+                nuevoPagerank[url] = (1 - factorAmortiguacion) / n + factorAmortiguacion * suma;
+            }
+            
+            return nuevoPagerank;
+        }
+        
+        // Calcular diferencia promedio entre dos iteraciones
+        private double CalcularDiferencia(Dictionary<string, double> anterior, Dictionary<string, double> nuevo, int n)
+        {
+            double diferencia = 0.0;
+            
+            foreach (string url in anterior.Keys)
+            {
+                diferencia += Math.Abs(nuevo[url] - anterior[url]);
+            }
+            
+            return diferencia / n;
+        }
+    }
+}
