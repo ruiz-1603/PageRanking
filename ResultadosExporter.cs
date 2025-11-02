@@ -22,19 +22,7 @@ namespace WebCrawler
             
             using (StreamWriter sw = new StreamWriter(archivo))
             {
-                sw.WriteLine("Matriz de Adyacencia del Grafo");
-                sw.WriteLine("================================");
-                sw.WriteLine($"Total de nodos: {urls.Count}");
-                sw.WriteLine();
-                
-                // Índice de URLs
-                sw.WriteLine("Índice de URLs:");
-                for (int i = 0; i < urls.Count; i++)
-                {
-                    sw.WriteLine($"[{i}] {urls[i]}");
-                }
-                sw.WriteLine();
-                
+         
                 sw.WriteLine("Matriz (1 = hay enlace, 0 = no hay enlace):");
                 sw.WriteLine();
                 
@@ -86,13 +74,10 @@ namespace WebCrawler
                     sw.WriteLine();
                     ranking++;
                 }
-                
-                // Estadísticas
+
                 sw.WriteLine("\n=== Estadísticas ===");
                 sw.WriteLine($"PageRank máximo: {ordenado[0].Value:F8}");
                 sw.WriteLine($"PageRank mínimo: {ordenado[ordenado.Count - 1].Value:F8}");
-                double promedio = pagerank.Values.Average();
-                sw.WriteLine($"PageRank promedio: {promedio:F8}");
             }
             
             Console.WriteLine($"Resultados de PageRank guardados en: {archivo}");
