@@ -9,28 +9,20 @@ namespace WebCrawler
         
         static async Task Main(string[] args)
         {
-            Console.WriteLine("================================================");
-            Console.WriteLine("    Web Crawler con Algoritmo PageRank");
-            Console.WriteLine("    Proyecto de Estructuras de Datos");
-            Console.WriteLine("================================================\n");
             
-            // Crear instancia del crawler
+    
             var crawler = new WebCrawler();
             
-            // URLs iniciales para comenzar el crawling
-            // Puedes modificar estas URLs según tus necesidades
+      
             var urls = new List<string>
             {
                 "https://www.una.ac.cr/",
-                "https://www.revistas.una.ac.cr/"
             };
             
             // Carpeta donde se guardarán los resultados
             string rutaSalida = "resultados_crawler";
             
             // Mostrar configuración
-            Console.WriteLine("Configuración del Crawler:");
-            Console.WriteLine($"  - Profundidad máxima: 4 niveles");
             Console.WriteLine($"  - Carpeta de salida: {rutaSalida}");
             Console.WriteLine($"  - Factor de amortiguación: 0.85");
             Console.WriteLine($"  - Umbral de convergencia: 0.0001\n");

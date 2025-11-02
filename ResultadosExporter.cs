@@ -5,7 +5,6 @@ using System.Linq;
 
 namespace WebCrawler
 {
-    // Clase encargada de exportar los resultados a archivos
     public class ResultadosExporter
     {
         private string carpetaSalida;
@@ -36,7 +35,6 @@ namespace WebCrawler
                 }
                 sw.WriteLine();
                 
-                // Matriz en formato binario
                 sw.WriteLine("Matriz (1 = hay enlace, 0 = no hay enlace):");
                 sw.WriteLine();
                 
@@ -54,20 +52,6 @@ namespace WebCrawler
                         }
                     }
                     sw.WriteLine();
-                }
-                
-                // Lista de adyacencia
-                sw.WriteLine();
-                sw.WriteLine("Lista de adyacencia:");
-                foreach (string url in urls)
-                {
-                    List<string> enlaces = grafo.getEnlacesSalientes(url);
-                    sw.WriteLine($"\n{url}");
-                    sw.WriteLine($"  Enlaces salientes: {enlaces.Count}");
-                    foreach (string destino in enlaces)
-                    {
-                        sw.WriteLine($"    -> {destino}");
-                    }
                 }
             }
             
@@ -112,8 +96,7 @@ namespace WebCrawler
             }
             
             Console.WriteLine($"Resultados de PageRank guardados en: {archivo}");
-            
-            // Mostrar top 10 en consola
+
             Console.WriteLine("\n=== Top 10 páginas más importantes ===");
             for (int i = 0; i < Math.Min(10, ordenado.Count); i++)
             {
