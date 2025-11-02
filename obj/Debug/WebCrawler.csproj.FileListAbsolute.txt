@@ -20,3 +20,14 @@ C:\Users\RuizM\Desktop\Ingenieria en Sistemas\II Semestre 2025\Estructuras de da
 C:\Users\RuizM\Desktop\Ingenieria en Sistemas\II Semestre 2025\Estructuras de datos\Tareas\WebCrawler\obj\Debug\WebCrawler.csproj.Up2Date
 C:\Users\RuizM\Desktop\Ingenieria en Sistemas\II Semestre 2025\Estructuras de datos\Tareas\WebCrawler\obj\Debug\WebCrawler.exe
 C:\Users\RuizM\Desktop\Ingenieria en Sistemas\II Semestre 2025\Estructuras de datos\Tareas\WebCrawler\obj\Debug\WebCrawler.pdb
+C:\Users\RuizM\Desktop\Ingenieria en Sistemas\II Semestre 2025\Estructuras de datos\Tareas\PageRanking\bin\Debug\WebCrawler.exe.config
+C:\Users\RuizM\Desktop\Ingenieria en Sistemas\II Semestre 2025\Estructuras de datos\Tareas\PageRanking\bin\Debug\WebCrawler.exe
+C:\Users\RuizM\Desktop\Ingenieria en Sistemas\II Semestre 2025\Estructuras de datos\Tareas\PageRanking\bin\Debug\WebCrawler.pdb
+C:\Users\RuizM\Desktop\Ingenieria en Sistemas\II Semestre 2025\Estructuras de datos\Tareas\PageRanking\bin\Debug\HtmlAgilityPack.pdb
+C:\Users\RuizM\Desktop\Ingenieria en Sistemas\II Semestre 2025\Estructuras de datos\Tareas\PageRanking\bin\Debug\HtmlAgilityPack.xml
+C:\Users\RuizM\Desktop\Ingenieria en Sistemas\II Semestre 2025\Estructuras de datos\Tareas\PageRanking\obj\Debug\WebCrawler.csproj.AssemblyReference.cache
+C:\Users\RuizM\Desktop\Ingenieria en Sistemas\II Semestre 2025\Estructuras de datos\Tareas\PageRanking\obj\Debug\WebCrawler.exe.config
+C:\Users\RuizM\Desktop\Ingenieria en Sistemas\II Semestre 2025\Estructuras de datos\Tareas\PageRanking\obj\Debug\WebCrawler.csproj.CoreCompileInputs.cache
+C:\Users\RuizM\Desktop\Ingenieria en Sistemas\II Semestre 2025\Estructuras de datos\Tareas\PageRanking\obj\Debug\WebCrawler.csproj.Up2Date
+C:\Users\RuizM\Desktop\Ingenieria en Sistemas\II Semestre 2025\Estructuras de datos\Tareas\PageRanking\obj\Debug\WebCrawler.exe
+C:\Users\RuizM\Desktop\Ingenieria en Sistemas\II Semestre 2025\Estructuras de datos\Tareas\PageRanking\obj\Debug\WebCrawler.pdb

@@ -47,10 +47,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Grafo.cs" />
-    <Compile Include="PageRankCalculator.cs" />
+    <Compile Include="CalculardoraPageRanking.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ResultadosExporter.cs" />
+    <Compile Include="Archivos.cs" />
     <Compile Include="WebCrawler.cs" />
   </ItemGroup>
   <ItemGroup>

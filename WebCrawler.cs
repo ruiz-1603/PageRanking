@@ -18,7 +18,7 @@ namespace WebCrawler
         private readonly ConcurrentDictionary<string, bool> _visited = new ConcurrentDictionary<string, bool>();
         private readonly ConcurrentBag<(string origen, string destino)> _aristas = new ConcurrentBag<(string, string)>();
         private readonly int paginasMax = 1000;
-        private readonly int paginasXtarea = 100;
+        private readonly int paginasXtarea = 1000;
         private string _outputFolder;
         private int visitadas = 0;
         
@@ -47,8 +47,6 @@ namespace WebCrawler
             {
                 cola.Enqueue((url, 0));
             }
-            
-            Console.WriteLine("Iniciando crawling paralelo...\n");
             
             while (!cola.IsEmpty && visitadas < paginasMax)
             {
@@ -106,11 +104,11 @@ namespace WebCrawler
             Console.WriteLine($"Total de páginas en el grafo: {grafo.CantidadNodos()}");
             
             // Calcular PageRank usando la clase especializada
-            PageRankCalculator calculador = new PageRankCalculator(grafo);
+            CalculardoraPageRanking calculador = new CalculardoraPageRanking(grafo);
             Dictionary<string, double> resultados = calculador.Calcular();
             
             // Exportar resultados usando la clase especializada
-            ResultadosExporter exporter = new ResultadosExporter(_outputFolder);
+            Archivos exporter = new Archivos(_outputFolder);
             exporter.ExportarMatrizAdyacencia(grafo);
             exporter.ExportarResultadosPageRank(resultados);
         }
@@ -191,13 +189,16 @@ namespace WebCrawler
             return nuevasUrls;
         }
 
+        // En el método ResolveUrl, agregar filtro de dominio
         private string ResolveUrl(string baseUrl, string href)
         {
             try
             {
                 var baseUri = new Uri(baseUrl);
                 var fullUri = new Uri(baseUri, href);
-                return fullUri.ToString();
+                string resultado = fullUri.ToString();
+                
+                return resultado;
             }
             catch
             {

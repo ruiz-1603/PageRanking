@@ -5,11 +5,11 @@ using System.Linq;
 
 namespace WebCrawler
 {
-    public class ResultadosExporter
+    public class Archivos
     {
         private string carpetaSalida;
         
-        public ResultadosExporter(string carpeta)
+        public Archivos(string carpeta)
         {
             this.carpetaSalida = carpeta;
         }
@@ -19,34 +19,24 @@ namespace WebCrawler
         {
             string archivo = Path.Combine(carpetaSalida, "matriz_adyacencia.txt");
             List<string> urls = grafo.getNodos();
-            
+
             using (StreamWriter sw = new StreamWriter(archivo))
             {
-         
-                sw.WriteLine("Matriz (1 = hay enlace, 0 = no hay enlace):");
-                sw.WriteLine();
-                
+        
+                // Escribir matriz de adyacencia
                 for (int i = 0; i < urls.Count; i++)
                 {
                     for (int j = 0; j < urls.Count; j++)
                     {
-                        if (grafo.existeArista(urls[i], urls[j]))
-                        {
-                            sw.Write("1 ");
-                        }
-                        else
-                        {
-                            sw.Write("0 ");
-                        }
+                        sw.Write(grafo.existeArista(urls[i], urls[j]) ? "1 " : "0 ");
                     }
                     sw.WriteLine();
                 }
             }
-            
+
             Console.WriteLine($"\nMatriz de adyacencia guardada en: {archivo}");
         }
-        
-        // Exportar resultados de PageRank
+      
         public void ExportarResultadosPageRank(Dictionary<string, double> pagerank)
         {
             string archivo = Path.Combine(carpetaSalida, "pagerank_resultados.txt");

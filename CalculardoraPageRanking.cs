@@ -4,14 +4,14 @@ using System.Linq;
 
 namespace WebCrawler
 {
-    public class PageRankCalculator
+    public class CalculardoraPageRanking
     {
         private Grafo grafo;
         private double factorAmortiguacion;
         private double umbralConvergencia;
         private int maxIteraciones;
         
-        public PageRankCalculator(Grafo grafo, double d = 0.85, double umbral = 0.0001, int maxIter = 100)
+        public CalculardoraPageRanking(Grafo grafo, double d = 0.85, double umbral = 0.0001, int maxIter = 100)
         {
             this.grafo = grafo;
             this.factorAmortiguacion = d;

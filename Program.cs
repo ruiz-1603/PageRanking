@@ -16,7 +16,7 @@ namespace WebCrawler
       
             var urls = new List<string>
             {
-                "https://www.una.ac.cr/","https://www.revistas.una.ac.cr/"
+                "https://youtube.com"
             };
             
             // Carpeta donde se guardarán los resultados
