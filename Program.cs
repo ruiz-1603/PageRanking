@@ -16,7 +16,7 @@ namespace WebCrawler
       
             var urls = new List<string>
             {
-                "https://youtube.com"
+                "https://www.siduna.una.ac.cr/bases-datos-glo"
             };
             
             // Carpeta donde se guardarán los resultados

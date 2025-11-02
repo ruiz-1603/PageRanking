@@ -18,11 +18,9 @@ namespace WebCrawler
         private readonly ConcurrentDictionary<string, bool> _visited = new ConcurrentDictionary<string, bool>();
         private readonly ConcurrentBag<(string origen, string destino)> _aristas = new ConcurrentBag<(string, string)>();
         private readonly int paginasMax = 1000;
-        private readonly int paginasXtarea = 1000;
         private string _outputFolder;
         private int visitadas = 0;
         
-        // Grafo para almacenar las relaciones entre páginas
         private Grafo grafo;
         
         public WebCrawler()
@@ -40,8 +38,7 @@ namespace WebCrawler
         public async Task StartCrawlAsync(string ruta, List<string> rootUrls, string patron = "")
         {
             Directory.CreateDirectory(_outputFolder = ruta);
-
-            // Recolectar todas las URLs usando BFS paralelo
+            
             var cola = new ConcurrentQueue<(string url, int depth)>();
             foreach (var url in rootUrls)
             {
@@ -53,8 +50,7 @@ namespace WebCrawler
                 var tareasPorLote = new List<Task>();
                 var urlsEnProceso = new List<(string url, int depth)>();
                 
-                // Extraer un lote de URLs
-                for (int i = 0; i < paginasXtarea && !cola.IsEmpty; i++)
+                for (int i = 0; i < 1000 && !cola.IsEmpty; i++)
                 {
                     if (cola.TryDequeue(out var item))
                     {
@@ -62,7 +58,6 @@ namespace WebCrawler
                     }
                 }
                 
-                // Procesar el lote en paralelo
                 foreach (var item in urlsEnProceso)
                 {
                     if (visitadas >= paginasMax) break;
@@ -83,8 +78,7 @@ namespace WebCrawler
                 await Task.WhenAll(tareasPorLote);
             }
             
-            // Construir el grafo con las aristas recolectadas
-            Console.WriteLine("\n=== Construyendo grafo ===");
+            Console.WriteLine("\nConstruyendo grafo ");
             foreach (var url in _visited.Keys)
             {
                 grafo.addNodo(url);
@@ -98,16 +92,13 @@ namespace WebCrawler
                 }
             }
             
-            // Cuando termina el crawling, calculamos PageRank
-            Console.WriteLine("\n=== Crawling completado ===");
+            Console.WriteLine("\nCrawling completado");
             Console.WriteLine($"Total de páginas visitadas: {visitadas}");
             Console.WriteLine($"Total de páginas en el grafo: {grafo.CantidadNodos()}");
             
-            // Calcular PageRank usando la clase especializada
             CalculardoraPageRanking calculador = new CalculardoraPageRanking(grafo);
             Dictionary<string, double> resultados = calculador.Calcular();
             
-            // Exportar resultados usando la clase especializada
             Archivos exporter = new Archivos(_outputFolder);
             exporter.ExportarMatrizAdyacencia(grafo);
             exporter.ExportarResultadosPageRank(resultados);
@@ -117,27 +108,21 @@ namespace WebCrawler
         {
             var nuevasUrls = new List<string>();
             
-            try
-            {
-                // Validaciones rápidas
                 if (depth > 20 || !url.StartsWith("http"))
                 {
                     return nuevasUrls;
                 }
-                
-                // Verificar patrón
+
                 if (!string.IsNullOrEmpty(patron) && !url.Contains(patron))
                 {
                     return nuevasUrls;
                 }
-                
-                // Verificar si ya fue visitada
+
                 if (!_visited.TryAdd(url, true))
                 {
                     return nuevasUrls;
                 }
-                
-                // Verificar límite
+
                 int contador = Interlocked.Increment(ref visitadas);
                 if (contador > paginasMax)
                 {
@@ -147,8 +132,7 @@ namespace WebCrawler
                 Console.WriteLine($"[{depth}] ({contador}/{paginasMax}) {url}");
                 
                 string html = await _httpClient.GetStringAsync(url);
-
-                // Parsear enlaces
+                
                 var doc = new HtmlDocument();
                 doc.LoadHtml(html);
                 var links = doc.DocumentNode
@@ -162,34 +146,17 @@ namespace WebCrawler
                     
                     if (!string.IsNullOrEmpty(fullUrl) && fullUrl.StartsWith("http"))
                     {
-                        // Guardar arista para construir el grafo después
                         _aristas.Add((url, fullUrl));
                         
-                        // Agregar a la lista de nuevas URLs si no ha sido visitada
                         if (!_visited.ContainsKey(fullUrl) && visitadas < paginasMax)
                         {
                             nuevasUrls.Add(fullUrl);
                         }
                     }
                 }
-            }
-            catch (TaskCanceledException)
-            {
-                // Timeout - ignorar
-            }
-            catch (HttpRequestException ex)
-            {
-                Console.WriteLine($"Error HTTP en {url}: {ex.Message}");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error en {url}: {ex.Message}");
-            }
-            
             return nuevasUrls;
         }
-
-        // En el método ResolveUrl, agregar filtro de dominio
+        
         private string ResolveUrl(string baseUrl, string href)
         {
             try

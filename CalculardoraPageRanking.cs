@@ -18,8 +18,6 @@ namespace WebCrawler
             this.umbralConvergencia = umbral;
             this.maxIteraciones = maxIter;
         }
-        
-        // Calcular PageRank de todas las páginas
         public Dictionary<string, double> Calcular()
         {
             List<string> urls = grafo.getNodos();
@@ -33,14 +31,12 @@ namespace WebCrawler
             
             Console.WriteLine($"\nCalculando PageRank para {n} páginas...");
             
-            // Inicializar PageRank: todos con valor 1/N
             Dictionary<string, double> pagerank = new Dictionary<string, double>();
             foreach (string url in urls)
             {
                 pagerank[url] = 1.0 / n;
             }
             
-            // Iterar hasta convergencia
             int iteracion = 0;
             bool convergio = false;
             
@@ -48,7 +44,6 @@ namespace WebCrawler
             {
                 Dictionary<string, double> nuevoPagerank = CalcularIteracion(pagerank, urls, n);
                 
-                // Verificar convergencia
                 double diferencia = CalcularDiferencia(pagerank, nuevoPagerank, n);
                 
                 Console.WriteLine($"Iteración {iteracion + 1}: diferencia promedio = {diferencia:F6}");
@@ -58,7 +53,6 @@ namespace WebCrawler
                     convergio = true;
                     Console.WriteLine($"Convergencia alcanzada en {iteracion + 1} iteraciones");
                 }
-                
                 pagerank = nuevoPagerank;
                 iteracion++;
             }
@@ -67,11 +61,9 @@ namespace WebCrawler
             {
                 Console.WriteLine($"Se alcanzó el límite de {maxIteraciones} iteraciones sin convergencia completa");
             }
-            
             return pagerank;
         }
         
-        // Calcular una iteración del algoritmo
         private Dictionary<string, double> CalcularIteracion(Dictionary<string, double> pagerankActual, List<string> urls, int n)
         {
             Dictionary<string, double> nuevoPagerank = new Dictionary<string, double>();
@@ -92,14 +84,13 @@ namespace WebCrawler
                     }
                 }
                 
-                // Aplicar fórmula de PageRank: PR(A) = (1-d)/N + d * suma
+                //// la Formula
                 nuevoPagerank[url] = (1 - factorAmortiguacion) / n + factorAmortiguacion * suma;
             }
             
             return nuevoPagerank;
         }
         
-        // Calcular diferencia promedio entre dos iteraciones
         private double CalcularDiferencia(Dictionary<string, double> anterior, Dictionary<string, double> nuevo, int n)
         {
             double diferencia = 0.0;
