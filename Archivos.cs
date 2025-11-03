@@ -23,7 +23,7 @@ namespace WebCrawler
             using (StreamWriter sw = new StreamWriter(archivo))
             {
         
-                // Escribir matriz de adyacencia
+                //  matriz de adyacencia
                 for (int i = 0; i < urls.Count; i++)
                 {
                     for (int j = 0; j < urls.Count; j++)
